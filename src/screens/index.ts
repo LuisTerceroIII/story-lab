@@ -1,2 +1,3 @@
 export * from './Home'
-export * from './NewHistory'
+export * from './NewStory'
+export * from './Story'

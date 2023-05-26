@@ -1,22 +1,26 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from '@react-navigation/native';
-import { Home, NewHistory } from '../screens/index';
+import { Home, NewStory, Story } from '../screens/index';
 import { ScreenName } from './screenNames';
+import { useHomeUIStore } from '../store/screensStore/homeUI';
 
 
 
 const Stack = createNativeStackNavigator()
 
 export const Routes = () => {
-  return (
-    <Stack.Navigator initialRouteName={ScreenName.Home}>
-        <Stack.Group>
-            <Stack.Screen name={ScreenName.Home} component={Home} options={{ title: 'Overview' }}/>
-            <Stack.Screen name={ScreenName.NEW_HISTORY} component={NewHistory} />
-        </Stack.Group>
-        <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        </Stack.Group>
-    </Stack.Navigator>
-  );
+
+    const { catName } = useHomeUIStore()
+
+    return (
+        <Stack.Navigator initialRouteName={ScreenName.HOME}>
+            <Stack.Group>
+                <Stack.Screen name={ScreenName.HOME} component={Home} options={{ title: 'Story Lab' }}/>
+                <Stack.Screen name={ScreenName.NEW_STORY} component={NewStory} />
+                <Stack.Screen name={ScreenName.STORY} component={Story} options={{ title: `${catName}` }}/>
+            </Stack.Group>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            </Stack.Group>
+        </Stack.Navigator>
+    );
 };

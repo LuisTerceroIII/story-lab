@@ -1,5 +1,6 @@
 export enum ScreenName {
-    Home = 'home',
-    NEW_HISTORY = 'newHistory',
+    HOME = 'home',
+    NEW_STORY = 'newStory',
+    STORY = 'history',
     FAVORITES = 'favorites'
 }

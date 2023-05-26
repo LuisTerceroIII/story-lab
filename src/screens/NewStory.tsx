@@ -2,16 +2,17 @@ import { View, Text, Button, SafeAreaView } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { ScreenProps } from './screenProps'
 import { ScreenName } from '../routes/screenNames'
+import { useHomeUIStore } from '../store/screensStore/homeUI'
 
 
-export const NewHistory: FunctionComponent<ScreenProps> = (props) => {
+export const NewStory: FunctionComponent<ScreenProps> = (props) => {
     const { navigation } = props
-    const { name } = props.route.params
+    const { catName } = useHomeUIStore()
     return (
         <SafeAreaView>
             <View>
-                <Text>{name}</Text>
-                <Button title="Click me" onPress={() => navigation.navigate(ScreenName.Home)} />   
+                <Text>La historia de hoy sera sobre: {catName}</Text>
+                <Button title="Click me" onPress={() => navigation.navigate(ScreenName.HOME)} />   
             </View>
         </SafeAreaView>
     )
