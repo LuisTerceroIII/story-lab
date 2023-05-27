@@ -17,6 +17,7 @@ interface StoryStoreProps {
     stories: Story[]
     actionStory: Story | null
     currentStoryIndex: number
+    loadingStory: boolean
     hasPrevStory: () => boolean
     hasNextStory: () => boolean
 }
@@ -31,9 +32,11 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
     stories: [...stories],
     actionStory: stories[0],
     currentStoryIndex: 0,
+    loadingStory: false,
     hasPrevStory: () => get().currentStoryIndex > 0,
     hasNextStory: () => get().currentStoryIndex < get().stories.length - 1,
     generateStory : async (input: string) => {
+        set({loadingStory: true})
         const res = await OpenAIService.getHistory(input)
         const id = () => nanoid()
         const story: Story = {
@@ -46,6 +49,7 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
         }
         set({ stories: [...get().stories, story]})
         set({actionStory: story})
+        set({loadingStory: false})
     },
     setActionStory: (id: string) => {
         const story = get().stories.find(story => story.id === id)
@@ -54,7 +58,7 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
         }
     },
     prevStory: () => {
-        set({currentStoryIndex: get().currentStoryIndex - 1,})
+        set({currentStoryIndex: get().currentStoryIndex - 1})
         set( state => ({
             actionStory: state.stories[state.currentStoryIndex]
         }))

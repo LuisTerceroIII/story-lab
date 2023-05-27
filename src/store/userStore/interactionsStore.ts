@@ -1,15 +1,27 @@
 import { create } from "zustand"
+import { useStoryStore } from "../storyStore/storyStore"
+import { Story } from "../../../types/types"
 
 interface InteractionsStoreProps {
     likesStoriesIds: string[]
 }
 interface InteractionsStoreActions {
-    likeStory: (id: string) => void
+    addStoryToFavorites: () => void
+    removeStoryFromFavorites: () => void
+    storyIsInFavorites: () => boolean
+    likedStories: () => Story[]
 }
 
 export const useInteractionsStore = create<InteractionsStoreProps & InteractionsStoreActions>((set, get) => ({
     likesStoriesIds : [],
-    likeStory: (id: string) => {
-        set({likesStoriesIds: [...get().likesStoriesIds, id]})
+    addStoryToFavorites: () => {
+        set({likesStoriesIds: [...get().likesStoriesIds, useStoryStore.getState().actionStory?.id]})
+    },
+    removeStoryFromFavorites: () => {
+        set({likesStoriesIds: get().likesStoriesIds.filter(storyId => storyId !== useStoryStore.getState().actionStory?.id)})
+    },
+    storyIsInFavorites: () => { return get().likesStoriesIds.includes(useStoryStore.getState().actionStory?.id)},
+    likedStories: () => {
+        return useStoryStore.getState().stories.filter(story => get().likesStoriesIds?.includes(story.id))
     }
 }))

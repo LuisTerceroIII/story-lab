@@ -1,20 +1,29 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { View, Text, Button, StyleSheet, ActivityIndicator } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { ScreenProps } from './screenProps'
 import { useStoryStore } from '../store/storyStore/storyStore'
+import { useInteractionsStore } from '../store/userStore/interactionsStore'
 
 export const Story: FunctionComponent<ScreenProps> = (props) => {
 
-    const { actionStory, prevStory, nextStory, hasPrevStory, hasNextStory } = useStoryStore()
+    const { actionStory, prevStory, nextStory, hasPrevStory, hasNextStory, loadingStory } = useStoryStore()
+    const { storyIsInFavorites, addStoryToFavorites, removeStoryFromFavorites } = useInteractionsStore()
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{actionStory?.title}</Text>
-            <Text>{actionStory?.story}</Text>
+            {loadingStory ? <ActivityIndicator size="large" color="#00ff00" /> : (
+                <>
+                    <Text style={styles.title}>{actionStory?.title}</Text>
+                    <Text>{actionStory?.story?.trimStart()}</Text>
+                </>
+            )}
             <View style={styles.titleContainer}>
-                {hasPrevStory() && <Button title="prev" onPress={prevStory} />}
-                {hasNextStory() && <Button title="next" onPress={nextStory} />}
+                {hasPrevStory() && !loadingStory && <Button title="prev" onPress={prevStory} />}
+                {hasNextStory() && !loadingStory && <Button title="next" onPress={nextStory} />}
             </View>
+            {storyIsInFavorites() ? (
+                 <Button title="remove from favorites" onPress={removeStoryFromFavorites} /> 
+            ): <Button title="add to favorites" onPress={addStoryToFavorites} />}
         </View>
     )
 }
@@ -38,7 +47,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
         marginTop: 20
     },
     button: {
