@@ -1,3 +1,4 @@
 declare module '@env' {
-    export const OPEN_AI_API_KEY: string;
+    export const OPENAI_API_KEY: string;
+    export const OPENAI_ORGANIZATION: string;
   }

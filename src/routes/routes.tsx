@@ -10,14 +10,13 @@ const Stack = createNativeStackNavigator()
 
 export const Routes = () => {
 
-    const { catName } = useHomeUIStore()
 
     return (
         <Stack.Navigator initialRouteName={ScreenName.HOME}>
             <Stack.Group>
                 <Stack.Screen name={ScreenName.HOME} component={Home} options={{ title: 'Story Lab' }}/>
                 <Stack.Screen name={ScreenName.NEW_STORY} component={NewStory} />
-                <Stack.Screen name={ScreenName.STORY} component={Story} options={{ title: `${catName}` }}/>
+                <Stack.Screen name={ScreenName.STORY} component={Story} options={{ title: `` }}/>
             </Stack.Group>
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
             </Stack.Group>

@@ -1,24 +1,26 @@
-import { SafeAreaView } from "react-native-safe-area-context"
-import { Text, StyleSheet, TextInput, TouchableOpacity } from "react-native"
+import { Text, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
 import { FunctionComponent } from "react"
 import { ScreenName } from "../routes/screenNames"
 import { ScreenProps } from "./screenProps"
 import { useHomeUIStore } from "../store/screensStore/homeUI"
+import { useStoryStore } from "../store/storyStore/storyStore"
 
 export const Home: FunctionComponent<ScreenProps> = (props) => {
     const { navigation } = props
     const { setCatName, catName } = useHomeUIStore()
+    const { generateStory } = useStoryStore()
 
     const updateAndGoToHistory = () : void => {
         navigation.navigate(ScreenName.STORY)
+        //generateStory(catName)
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.title}>Cat edition</Text>
             <TextInput onChangeText={setCatName} value={catName} style={styles.input} onSubmitEditing={updateAndGoToHistory}/>
             <TouchableOpacity onPress={updateAndGoToHistory} style={styles.button}><Text>Generate</Text></TouchableOpacity>
-        </SafeAreaView>
+        </View>
     )
 }
 
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
+        marginTop: 20
     },
     input: {
         width: 200,
