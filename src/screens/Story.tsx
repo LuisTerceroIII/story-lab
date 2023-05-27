@@ -3,19 +3,17 @@ import React, { FunctionComponent } from 'react'
 import { ScreenProps } from './screenProps'
 import { useStoryStore } from '../store/storyStore/storyStore'
 import { useInteractionsStore } from '../store/userStore/interactionsStore'
+import { Story } from '../components/index'
 
-export const Story: FunctionComponent<ScreenProps> = (props) => {
+export const StoryScreen: FunctionComponent<ScreenProps> = (props) => {
 
     const { actionStory, prevStory, nextStory, hasPrevStory, hasNextStory, loadingStory } = useStoryStore()
     const { storyIsInFavorites, addStoryToFavorites, removeStoryFromFavorites } = useInteractionsStore()
-
+    
     return (
         <View style={styles.container}>
             {loadingStory ? <ActivityIndicator size="large" color="#00ff00" /> : (
-                <>
-                    <Text style={styles.title}>{actionStory?.title}</Text>
-                    <Text>{actionStory?.story?.trimStart()}</Text>
-                </>
+               <Story story={actionStory} />
             )}
             <View style={styles.titleContainer}>
                 {hasPrevStory() && !loadingStory && <Button title="prev" onPress={prevStory} />}
@@ -36,17 +34,13 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flex: 1,
         paddingHorizontal: 20,
+        paddingTop: 20
     },
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%',
-        marginTop: 20
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
         marginTop: 20
     },
     button: {

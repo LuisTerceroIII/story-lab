@@ -1,38 +1,35 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
 import React, { Fragment, FunctionComponent, useMemo } from 'react'
 import { ScreenProps } from './screenProps'
 import { useInteractionsStore } from '../store/userStore/interactionsStore'
+import { Story } from '../components/index'
 
 export const Favorites: FunctionComponent<ScreenProps> = (props) => {
 
     const { likedStories } = useInteractionsStore()
 
-    const favorites = useMemo(() => {
-        return likedStories().map(story => {
-           return (
-            <Fragment key={story?.id}>
-                <Text style={styles.title}>{story?.title}</Text>
-                <Text>{story?.story?.trimStart()}</Text>
-            </Fragment>
-           )
-        })
-    },[likedStories()?.length])
+    const renderSeparator = () => {
+        return <View style={{ height: 40 }} />;
+      };
 
     return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-                {favorites}
-            </ScrollView>
+            <FlatList
+                contentContainerStyle={styles.scrollContainer}
+                data={likedStories()}
+                keyExtractor={item => item.id}
+                ItemSeparatorComponent={renderSeparator}
+                renderItem={({ item }) => (
+                    <Story key={item.id} story={item} />
+                )}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container : {
-        flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
+        flex: 1,
     },
     scrollContainer: {
         backgroundColor: '#fff',
@@ -40,7 +37,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingHorizontal: 25,
-        paddingBottom: 40
+        paddingBottom: 40,
+        paddingTop: 40,
     },
     title: {
         fontSize: 24,

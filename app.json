@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "storylab",
+    "name": "Storylab",
     "slug": "StoryLab",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,13 +15,17 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ledev.storylab",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ledev.storylab",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
