@@ -3,28 +3,24 @@ import { nanoid } from 'nanoid'
 import { OpenAIService } from "../../services/openAI.service";
 import { stories } from "../../util/stories";
 import { StoriesCategories, Story } from "../../util/model";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenName } from "../../routes/screenNames"
+
 interface StoryStoreProps {
     stories: Story[]
     actionStory: Story | null
-    currentStoryIndex: number
     loadingStory: boolean
-    hasPrevStory: () => boolean
-    hasNextStory: () => boolean
+    getCategoryLabel: (category: StoriesCategories) => string
 }
 interface StoryStoreAction {
     generateStory: (input: string) => Promise<void>
     setActionStory: (id: string) => void
-    prevStory(): void
-    nextStory(): void
 }
 
 export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, get) => ({
     stories: [...stories],
     actionStory: stories[0],
-    currentStoryIndex: 0,
     loadingStory: false,
-    hasPrevStory: () => get().currentStoryIndex > 0,
-    hasNextStory: () => get().currentStoryIndex < get().stories.length - 1,
     generateStory : async (input: string) => {
         set({loadingStory: true})
         const res = await OpenAIService.getHistory(input)
@@ -37,7 +33,7 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
             content: res, 
             ownerId: "0"
         }
-        set({ stories: [...get().stories, story]})
+        set({stories: [...get().stories, story]})
         set({actionStory: story})
         set({loadingStory: false})
     },
@@ -47,18 +43,45 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
             set({actionStory: story})
         }
     },
-    prevStory: () => {
-        set({currentStoryIndex: get().currentStoryIndex - 1})
-        set( state => ({
-            actionStory: state.stories[state.currentStoryIndex]
-        }))
-    },
-    nextStory: () => {
-        set({currentStoryIndex: get().currentStoryIndex + 1})
-        set( state => ({
-            actionStory: state.stories[state.currentStoryIndex]
-        }))
-
-    },
+    getCategoryLabel: (category: StoriesCategories) => {
+        switch (category) {
+            case StoriesCategories.ANIMALS:
+                return "Animals"
+            case StoriesCategories.ADVENTURE:
+                return "Adventure"
+            case StoriesCategories.FAIRY_TALE:
+                return "Fairy Tale"
+            case StoriesCategories.FANTASY:
+                return "Fantasy"
+            case StoriesCategories.LOVE:
+                return "Love"
+            case StoriesCategories.MYSTERY:
+                return "Mystery"
+            case StoriesCategories.FANTASY:
+                return "Fantasy"
+            case StoriesCategories.FRIENDSHIP:
+                return "Friendship"
+            case StoriesCategories.MAGIC:
+                return "Magic"
+            case StoriesCategories.BEDTIME_STORIES:
+                return "Bedtime Stories"
+            case StoriesCategories.EDUCATIONAL:
+                return "Educational"
+            case StoriesCategories.NATURE:
+                return "Nature"
+            case StoriesCategories.SUPERHEROES:
+                return "Superheroes"
+            case StoriesCategories.HUMOR:
+                return "Humor"
+            case StoriesCategories.MYSTERY:
+                return "Mystery"
+            case StoriesCategories.COURAGE:
+                return "Courage"
+            case StoriesCategories.EXPLORATION:
+                return "Exploration"                
+            default:
+                return "Unknown"
+        }
+    }
 
 }))

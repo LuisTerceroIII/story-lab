@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { Actors, StoriesCategories, Story } from "./model";
+import { Actors, ImageType, StoriesCategories, Story } from "./model";
 
 export const stories: Story[] = [
   {
@@ -11,7 +11,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -26,7 +26,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/209037/pexels-photo-209037.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -42,7 +42,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/14206402/pexels-photo-14206402.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -58,7 +58,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -74,7 +74,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/12623663/pexels-photo-12623663.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -90,7 +90,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/14731737/pexels-photo-14731737.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -106,7 +106,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -123,7 +123,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/236660/pexels-photo-236660.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -140,7 +140,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/735423/pexels-photo-735423.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -157,7 +157,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/1005174/pexels-photo-1005174.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -174,7 +174,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/1323326/cat-pet-pussy-animal-1323326.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },
@@ -190,7 +190,7 @@ export const stories: Story[] = [
         id: () => nanoid(),
         actorType: Actors.STORY,
         actorId: "0",
-        subPath: "coverImage",
+        subPath: ImageType.COVER,
         storePath: "",
         url:  "https://images.pexels.com/photos/5441459/pexels-photo-5441459.jpeg?auto=compress&cs=tinysrgb&w=360&h=360&dpr=2"
     },

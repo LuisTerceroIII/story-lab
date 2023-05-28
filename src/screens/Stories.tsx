@@ -1,36 +1,42 @@
-import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
-import React, { Fragment, FunctionComponent, useMemo } from 'react'
+import { View, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
+import React, { FunctionComponent } from 'react'
 import { ScreenProps } from './screenProps'
-import { useInteractionsStore } from '../store/userStore/interactionsStore'
-import { Story, StoryMiniCard } from '../components/index'
+import { useStoryStore } from '../store/storyStore/storyStore'
+import { StoryMiniCard } from '../components/index'
 
-export const Favorites: FunctionComponent<ScreenProps> = (props) => {
+export const StoriesScreen: FunctionComponent<ScreenProps> = (props) => {
 
-    const { likedStories } = useInteractionsStore()
+    const { loadingStory, stories } = useStoryStore()
 
+    const story = ({ item, index }) => {
+        return <View style={styles.container}>
+            	{loadingStory ?
+                	<ActivityIndicator size="large" color="#00ff00" /> : (
+                	<StoryMiniCard story={item} containerStyle={{marginRight: index % 2 !== 0 ? 0 : 20}}/>
+            	)}
+        	</View>
+	
+    }
     const renderSeparator = () => {
         return <View style={{ height: 20 }} />;
       };
-
+    
     return (
         <View style={styles.container}>
             <FlatList
                 contentContainerStyle={styles.scrollContainer}
-                data={likedStories()}
+                data={stories}
                 numColumns={2}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={renderSeparator}
-                renderItem={({ item, index }) => (
-                    <StoryMiniCard key={item.id} story={item} containerStyle={{marginRight: index % 2 !== 0 ? 0 : 20}} />
-                )}/>
+                renderItem={story}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container : {
-        backgroundColor: '#fff',
-        flex: 1,
+    container: {
+        backgroundColor: '#fff'
     },
     scrollContainer: {
         backgroundColor: '#fff',
@@ -41,10 +47,11 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
         paddingTop: 40,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 5,
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
         marginTop: 20
     },
     button: {

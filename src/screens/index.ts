@@ -1,4 +1,5 @@
 export * from './Home'
 export * from './NewStory'
-export * from './Story'
+export * from './Stories'
 export * from './Favorites'
+export * from './Story'

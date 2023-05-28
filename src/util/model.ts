@@ -52,4 +52,9 @@ export enum StoriesCategories {
 export enum Actors {
   USER = "user",
   STORY = "story"
-}  
+}
+export enum ImageType {
+    COVER = "cover",
+    STORY = "story",
+    PROFILE = "profile"
+}

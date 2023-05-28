@@ -11,7 +11,7 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
     const { generateStory } = useStoryStore()
 
     const updateAndGoToHistory = () : void => {
-        navigation.navigate(ScreenName.STORY)
+        navigation.navigate(ScreenName.STORIES)
         //generateStory(catName)
     }
     const goToFavorites = () : void => {

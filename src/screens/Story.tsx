@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, Button, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { ScreenProps } from './screenProps'
 import { useStoryStore } from '../store/storyStore/storyStore'
@@ -7,22 +7,18 @@ import { Story } from '../components/index'
 
 export const StoryScreen: FunctionComponent<ScreenProps> = (props) => {
 
-    const { actionStory, prevStory, nextStory, hasPrevStory, hasNextStory, loadingStory } = useStoryStore()
+    const { actionStory, loadingStory } = useStoryStore()
     const { storyIsInFavorites, addStoryToFavorites, removeStoryFromFavorites } = useInteractionsStore()
     
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             {loadingStory ? <ActivityIndicator size="large" color="#00ff00" /> : (
                <Story story={actionStory} />
             )}
-            <View style={styles.titleContainer}>
-                {hasPrevStory() && !loadingStory && <Button title="prev" onPress={prevStory} />}
-                {hasNextStory() && !loadingStory && <Button title="next" onPress={nextStory} />}
-            </View>
-            {storyIsInFavorites() ? (
-                 <Button title="remove from favorites" onPress={removeStoryFromFavorites} /> 
-            ): <Button title="add to favorites" onPress={addStoryToFavorites} />}
-        </View>
+            {storyIsInFavorites(actionStory?.id) ? (
+                 <Button title="remove from favorites" onPress={() => removeStoryFromFavorites(actionStory?.id)} /> 
+            ): <Button title="add to favorites" onPress={() => addStoryToFavorites(actionStory?.id)} />}
+        </ScrollView>
     )
 }
 

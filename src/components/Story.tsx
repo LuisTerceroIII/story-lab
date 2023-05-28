@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { Image } from 'expo-image'
-import { shadows } from '../../util/styles/shadows'
-import { Story as StoryType } from '../../util/model'
+import { shadows } from '../util/styles/shadows'
+import { Story as StoryType } from '../util/model'
 
 const blurhash = "'|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';"
 
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'space-between',
         alignItems: 'center',
-        ...shadows.shadow
     },
     title: {
         fontSize: 24,

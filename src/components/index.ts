@@ -1,1 +1,2 @@
-export * from './Story/story'
+export * from './Story'
+export * from './StoryMiniCard'
