@@ -1,11 +1,11 @@
-interface User {
+export interface User {
   id: string;
   username: string;
   password: string;
   email: string;
   profilePic: Image
 }
-interface Image {
+export interface Image {
   id: string;
   actorType: Actors;
   actorId: string;
@@ -13,19 +13,20 @@ interface Image {
   storePath: string;
   url: string;
 }
-interface Story {
+export interface Story {
   id: string;
   title: string;
   category: StoriesCategories;
-  coverImage: Image;
-  storyImages: Image[];
+  coverImage?: Image;
+  storyImages?: Image[];
   content: string;
+  ownerId?: string;
 }
-interface UserGeneratedStory extends Story {
+export interface UserGeneratedStory extends Story {
   userId: string;
   prompt: string;
 }
-interface Favorite {
+export interface Favorite {
   id: string;
   userId: string;
   storyId: string;

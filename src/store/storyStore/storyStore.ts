@@ -2,17 +2,7 @@ import { create } from "zustand";
 import { nanoid } from 'nanoid'
 import { OpenAIService } from "../../services/openAI.service";
 import { stories } from "../../util/stories";
-interface StoryPrompt {
-
-}
-interface Story {
-    id: string,
-    title: string,
-    imgURL: string,
-    story: string,
-    ownerId?: string,
-}
-
+import { StoriesCategories, Story } from "../../util/model";
 interface StoryStoreProps {
     stories: Story[]
     actionStory: Story | null
@@ -42,9 +32,9 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
         const story: Story = {
             //@ts-ignore
             id,
-            title: input, 
-            imgURL: "", 
-            story: res, 
+            title: input,
+            category: StoriesCategories.ANIMALS,
+            content: res, 
             ownerId: "0"
         }
         set({ stories: [...get().stories, story]})

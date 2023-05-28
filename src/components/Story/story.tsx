@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { Image } from 'expo-image'
-import { Story as StoryType} from '../../../types/types'
 import { shadows } from '../../util/styles/shadows'
+import { Story as StoryType } from '../../util/model'
 
 const blurhash = "'|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';"
 
@@ -15,14 +15,14 @@ export const Story: FunctionComponent<StoryProps> = ({story}) => {
     <View style={[styles.container]}>
         <Text style={styles.title}>{story?.title}</Text>
         <Image
-            source={story?.imgURL}
+            source={story?.coverImage?.url}
             placeholder={blurhash}
             contentFit="contain"
             transition={400}
             priority='high'
             placeholderContentFit='contain'
             style={styles.image} />
-        <Text style={styles.story}>{story?.story?.trimStart()}</Text>
+        <Text style={styles.story}>{story?.content?.trimStart()}</Text>
     </View>
   )
 }
