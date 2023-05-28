@@ -17,10 +17,10 @@ export const Story: FunctionComponent<StoryProps> = ({story}) => {
         <Image
             source={story?.coverImage?.url}
             placeholder={blurhash}
-            contentFit="contain"
+            contentFit="cover"
             transition={400}
             priority='high'
-            placeholderContentFit='contain'
+            placeholderContentFit='cover'
             style={styles.image} />
         <Text style={styles.story}>{story?.content?.trimStart()}</Text>
     </View>
@@ -37,16 +37,18 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
         marginTop: 10
     },
     image: {
-        width: 200, 
-        height: 200,
+        width: 170, 
+        height: 170,
+        borderRadius: 200,
+        marginTop: 20,
+        marginBottom: 20,
     },
     story : {
         fontSize: 16,
-        paddingHorizontal: 20,
+        paddingHorizontal: 2,
         paddingBottom: 20
     }
 

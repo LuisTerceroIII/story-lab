@@ -27,15 +27,15 @@ export const StoryMiniCard: FunctionComponent<StoryProps> = ({story, containerSt
     }
     return (
         <TouchableOpacity style={[styles.container, containerStyle]} onPress={goToStory}>
-            <Text style={styles.title}>{story?.title}</Text>
             <Image
                 source={story?.coverImage?.url}
                 placeholder={blurhash}
-                contentFit="contain"
+                contentFit="cover"
                 transition={400}
                 priority='high'
                 placeholderContentFit='contain'
                 style={styles.image} />
+            <Text style={styles.title} numberOfLines={1}>{story?.title}</Text>
             <Text style={styles.story}>{getCategoryLabel(story?.category)}</Text>
         </TouchableOpacity>
     )
@@ -44,25 +44,30 @@ export const StoryMiniCard: FunctionComponent<StoryProps> = ({story, containerSt
 const styles = StyleSheet.create({
     container : {
         backgroundColor: '#fff',
-        padding: 5,
         borderRadius: 10,
         width: 170,
         height: 190,
         alignItems: 'center',
         ...shadows.shadow
+
     },
     title: {
-        fontSize: 22,
-        marginTop: 5
+        fontSize: 18,
+        marginTop: 12,
+        paddingHorizontal: 10,
     },
     image: {
-        width: 140, 
-        height: 120,
+        width: 170, 
+        height: 115,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        top: 0,
+        position: 'relative',
     },
     story : {
-        fontSize: 16,
-        paddingHorizontal: 20,
-        paddingBottom: 20
+        fontSize: 15,
+        paddingTop: 10,
+        color: '#999',
     }
 
 })
