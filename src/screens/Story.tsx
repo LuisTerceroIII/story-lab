@@ -8,17 +8,15 @@ import { Story } from '../components/index'
 export const StoryScreen: FunctionComponent<ScreenProps> = (props) => {
 
     const { actionStory, loadingStory } = useStoryStore()
-    const { storyIsInFavorites, addStoryToFavorites, removeStoryFromFavorites } = useInteractionsStore()
     
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={{backgroundColor: '#fff', flex: 1}}>
+            <ScrollView contentContainerStyle={styles.container}>
             {loadingStory ? <ActivityIndicator size="large" color="#00ff00" /> : (
                <Story story={actionStory} />
             )}
-            {storyIsInFavorites(actionStory?.id) ? (
-                 <Button title="remove from favorites" onPress={() => removeStoryFromFavorites(actionStory?.id)} /> 
-            ): <Button title="add to favorites" onPress={() => addStoryToFavorites(actionStory?.id)} />}
         </ScrollView>
+        </View>
     )
 }
 
@@ -28,9 +26,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 20
+        paddingTop: 20,
     },
     titleContainer: {
         flexDirection: 'row',
@@ -47,6 +44,5 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
     }
 })
