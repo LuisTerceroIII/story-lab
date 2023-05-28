@@ -46,7 +46,8 @@ export enum StoriesCategories {
   HUMOR = "humor",
   MYSTERY = "mystery",
   COURAGE = "courage",
-  EXPLORATION = "exploration"
+  EXPLORATION = "exploration",
+  MUSIC = "music"
 }
 
 export enum Actors {

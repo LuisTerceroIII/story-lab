@@ -11,6 +11,7 @@ interface StoryStoreProps {
     actionStory: Story | null
     loadingStory: boolean
     getCategoryLabel: (category: StoriesCategories) => string
+    getShuffleStories: () => Story[]
 }
 interface StoryStoreAction {
     generateStory: (input: string) => Promise<void>
@@ -42,6 +43,9 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
         if (story) {
             set({actionStory: story})
         }
+    },
+    getShuffleStories: () => {
+        return get().stories.sort(() => Math.random() - 0.5)
     },
     getCategoryLabel: (category: StoriesCategories) => {
         switch (category) {
@@ -78,7 +82,9 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
             case StoriesCategories.COURAGE:
                 return "Courage"
             case StoriesCategories.EXPLORATION:
-                return "Exploration"                
+                return "Exploration"
+            case StoriesCategories.MUSIC:
+                return "Music"                
             default:
                 return "Unknown"
         }

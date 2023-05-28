@@ -6,7 +6,7 @@ import { StoryMiniCard } from '../components/index'
 
 export const StoriesScreen: FunctionComponent<ScreenProps> = (props) => {
 
-    const { loadingStory, stories } = useStoryStore()
+    const { loadingStory, getShuffleStories} = useStoryStore()
 
     const story = ({ item, index }) => {
         return <View style={styles.container}>
@@ -25,7 +25,7 @@ export const StoriesScreen: FunctionComponent<ScreenProps> = (props) => {
         <View style={styles.container}>
             <FlatList
                 contentContainerStyle={styles.scrollContainer}
-                data={stories}
+                data={getShuffleStories()}
                 numColumns={2}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={renderSeparator}

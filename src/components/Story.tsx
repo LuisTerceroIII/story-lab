@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     story : {
         fontSize: 16,
         paddingHorizontal: 2,
-        paddingBottom: 20
+        paddingBottom: 20,
+        lineHeight: 30,
     }
 
 })
