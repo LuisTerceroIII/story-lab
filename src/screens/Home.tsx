@@ -1,11 +1,12 @@
-import { Text, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
-import { FunctionComponent } from "react"
-import { ScreenName } from "../routes/screenNames"
-import { ScreenProps } from "./screenProps"
-import { useHomeUIStore } from "../store/screensStore/homeUI"
-import { useStoryStore } from "../store/storyStore/storyStore"
+import { Text, StyleSheet, TextInput, TouchableOpacity, View, Animated } from "react-native"
+import { FunctionComponent, useRef } from "react"
+import { ScreenName } from "@navigation/screenNames"
+import { ScreenProps } from "@screens/screenProps"
+import { useHomeUIStore } from "@store/screensStore/homeUI"
+import { useStoryStore } from "@store/storyStore/storyStore"
 
 export const Home: FunctionComponent<ScreenProps> = (props) => {
+
     const { navigation } = props
     const { setCatName, catName } = useHomeUIStore()
     const { generateStory } = useStoryStore()
