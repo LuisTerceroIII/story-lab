@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView, Button } from 'react-native'
 import React, { FunctionComponent } from 'react'
 import { Image } from 'expo-image'
 import { shadows } from '../utils/styles/shadows'
-import { Story as StoryType } from '../../types/model'
+import { Story as StoryType } from '../types/models'
 import { useStoryStore } from '../store/storyStore/storyStore'
 import { useInteractionsStore } from '../store/userStore/interactionsStore'
 

@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native'
-import React, { Fragment, FunctionComponent, useMemo } from 'react'
-import { ScreenProps } from './screenProps'
-import { useInteractionsStore } from '../store/userStore/interactionsStore'
-import { Story, StoryMiniCard } from '../components/index'
+import { View, StyleSheet, FlatList } from 'react-native'
+import React, { FunctionComponent } from 'react'
+import { ScreenProps } from '@screens/screenProps'
+import { useInteractionsStore } from '@store/userStore/interactionsStore'
+import { StoryMiniCard } from '@components/index'
 
 export const Favorites: FunctionComponent<ScreenProps> = (props) => {
 

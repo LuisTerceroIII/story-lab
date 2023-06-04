@@ -1,10 +1,3 @@
-export interface User {
-  id: string;
-  username: string;
-  password: string;
-  email: string;
-  profilePic: Image
-}
 export interface Image {
   id: string;
   actorType: Actors;
@@ -59,3 +52,22 @@ export enum ImageType {
     STORY = "story",
     PROFILE = "profile"
 }
+export enum Languages {
+    ENGLISH = "english",
+    SPANISH = "spanish",
+}
+export interface Preferences {
+    language: Languages
+    nightMode: boolean
+}
+export interface Interactions {
+    likesStoriesIds: string[]
+    generatedStoriesIds: string[]
+}
+export interface User extends Partial<Preferences>, Partial<Interactions> {
+    id: string;
+    username: string;
+    password: string;
+    email: string;
+    profilePic?: Image
+  }

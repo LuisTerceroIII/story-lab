@@ -1,10 +1,9 @@
 import { create } from "zustand"
-import { useStoryStore } from "../storyStore/storyStore"
-import { Story } from "../../../types/model"
+import { useStoryStore } from "@store/storyStore/storyStore"
+import { Story, Interactions } from "@models/models"
 
 
-interface InteractionsStoreProps {
-    likesStoriesIds: string[]
+interface InteractionsStoreProps extends Interactions {
 }
 interface InteractionsStoreActions {
     addStoryToFavorites: (id: string) => void
@@ -15,6 +14,7 @@ interface InteractionsStoreActions {
 
 export const useInteractionsStore = create<InteractionsStoreProps & InteractionsStoreActions>((set, get) => ({
     likesStoriesIds : [],
+    generatedStoriesIds : [],
     addStoryToFavorites: (id: string) => {
         set({likesStoriesIds: [...get().likesStoriesIds, id]})
     },

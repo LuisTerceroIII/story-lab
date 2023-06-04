@@ -1,5 +1,5 @@
-import { Text, StyleSheet, TextInput, TouchableOpacity, View, Animated } from "react-native"
-import { FunctionComponent, useRef } from "react"
+import { Text, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
+import { FunctionComponent } from "react"
 import { ScreenName } from "@navigation/screenNames"
 import { ScreenProps } from "@screens/screenProps"
 import { useHomeUIStore } from "@store/screensStore/homeUI"

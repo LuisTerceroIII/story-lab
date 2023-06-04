@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { nanoid } from 'nanoid'
 import { OpenAIService } from "@services/openAI.service";
 import { stories } from "@utils/stories";
-import { StoriesCategories, Story } from "@types/model";
+import { StoriesCategories, Story } from "@models/models";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenName } from "@navigation/screenNames"
 

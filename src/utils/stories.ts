@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { Actors, ImageType, StoriesCategories, Story } from "../../types/model";
+import { Actors, ImageType, StoriesCategories, Story } from "../types/models";
 
 export const stories: Story[] = [
   {
