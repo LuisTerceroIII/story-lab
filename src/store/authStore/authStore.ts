@@ -1,12 +1,15 @@
 import { create } from "zustand"
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebase/firebaseConfig";
+import { addNewUser } from "../../services/firebase/user";
 
 
 interface AuthStoreProps {
     email: string,
     password: string,
     error: string,
+    emailIsVerified: boolean,
+    isAnonymous: boolean,
 }
 interface AuthStoreActions {
     signIn: () => Promise<void>
@@ -19,6 +22,8 @@ export const useAuthStore = create<AuthStoreProps & AuthStoreActions>((set, get)
     email: '',
     password: '',
     error: '',
+    emailIsVerified: false,
+    isAnonymous: false,
     setEmail: (email) => set({ email }),
     setPassword: (password) => set({ password }),
     signIn: async () => {
@@ -52,7 +57,9 @@ export const useAuthStore = create<AuthStoreProps & AuthStoreActions>((set, get)
           }
           try {
             await createUserWithEmailAndPassword(auth, get().email, get().password)
+            await addNewUser(auth.currentUser)
           } catch (error) {
+            console.log(error)
             set({
                 email: get().email,
                 password: get().password,
