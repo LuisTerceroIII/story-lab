@@ -1,7 +1,6 @@
 import { create } from "zustand"
-import { useStoryStore } from "../../store/storyStore/storyStore"
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useFirebaseAppStore } from "../firebaseStore/firebaseApp";
+import { auth } from "../../services/firebase/firebaseConfig";
 
 
 interface AuthStoreProps {
@@ -43,7 +42,6 @@ export const useAuthStore = create<AuthStoreProps & AuthStoreActions>((set, get)
           }
     },
     signUp: async () => {
-        const auth = useFirebaseAppStore.getState().auth
         if (get().email === '' || get().password === '') {
             set({
                 email: get().email,

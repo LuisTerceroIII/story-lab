@@ -4,7 +4,6 @@ import { getAuth } from "firebase/auth";
 import { FIREBASE_API_KEY, FIREBASE_APP_ID,FIREBASE_AUTH_DOMAIN,FIREBASE_MEASUREMENT_ID,FIREBASE_MESSAGING_SENDER_ID,FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET } from "@env";
 
 // Optionally import the services that you want to use
-//import { getAuth } from "firebase/auth";
 // import {...} from "firebase/database";
 // import {...} from "firebase/firestore";
 // import {...} from "firebase/functions";
