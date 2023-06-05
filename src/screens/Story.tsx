@@ -1,9 +1,9 @@
 import { View, Text, Button, StyleSheet, ActivityIndicator, ScrollView } from 'react-native'
 import React, { FunctionComponent } from 'react'
-import { ScreenProps } from '@screens/screenProps'
-import { useStoryStore } from '@store/storyStore/storyStore'
-import { useInteractionsStore } from '@store/userStore/interactionsStore'
-import { Story } from '@components/index'
+import { ScreenProps } from '../screens/screenProps'
+import { useStoryStore } from '../store/storyStore/storyStore'
+import { useInteractionsStore } from '../store/userStore/interactionsStore'
+import { Story } from '../components/index'
 
 export const StoryScreen: FunctionComponent<ScreenProps> = (props) => {
 

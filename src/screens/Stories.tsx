@@ -1,8 +1,8 @@
 import { View, StyleSheet, ActivityIndicator, FlatList } from 'react-native'
 import React, { FunctionComponent } from 'react'
-import { ScreenProps } from '@screens/screenProps'
-import { useStoryStore } from '@store/storyStore/storyStore'
-import { StoryMiniCard } from '@components/index'
+import { ScreenProps } from '../screens/screenProps'
+import { useStoryStore } from '../store/storyStore/storyStore'
+import { StoryMiniCard } from '../components/index'
 
 export const StoriesScreen: FunctionComponent<ScreenProps> = (props) => {
 

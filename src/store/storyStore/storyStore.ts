@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { nanoid } from 'nanoid'
-import { OpenAIService } from "@services/openAI.service";
-import { stories } from "@utils/stories";
-import { StoriesCategories, Story } from "@models/models";
+import { OpenAIService } from "../../services/openAI/openAiService";
+import { stories } from "../../utils/stories";
+import { StoriesCategories, Story } from "../../types/models";
 import { useNavigation } from "@react-navigation/native";
-import { ScreenName } from "@navigation/screenNames"
+import { ScreenName } from "../../routes/screenNames"
 
 interface StoryStoreProps {
     stories: Story[]

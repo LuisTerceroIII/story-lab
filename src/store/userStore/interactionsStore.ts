@@ -1,6 +1,6 @@
 import { create } from "zustand"
-import { useStoryStore } from "@store/storyStore/storyStore"
-import { Story, Interactions } from "@models/models"
+import { useStoryStore } from "../../store/storyStore/storyStore"
+import { Story, Interactions } from "../../types/models"
 
 
 interface InteractionsStoreProps extends Interactions {

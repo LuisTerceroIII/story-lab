@@ -1,8 +1,8 @@
 import { View, StyleSheet, FlatList } from 'react-native'
 import React, { FunctionComponent } from 'react'
-import { ScreenProps } from '@screens/screenProps'
-import { useInteractionsStore } from '@store/userStore/interactionsStore'
-import { StoryMiniCard } from '@components/index'
+import { ScreenProps } from '../screens/screenProps'
+import { useInteractionsStore } from '../store/userStore/interactionsStore'
+import { StoryMiniCard } from '../components/index'
 
 export const Favorites: FunctionComponent<ScreenProps> = (props) => {
 

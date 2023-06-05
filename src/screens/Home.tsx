@@ -1,27 +1,32 @@
 import { Text, StyleSheet, TextInput, TouchableOpacity, View } from "react-native"
 import { FunctionComponent } from "react"
-import { ScreenName } from "@navigation/screenNames"
-import { ScreenProps } from "@screens/screenProps"
-import { useHomeUIStore } from "@store/screensStore/homeUI"
-import { useStoryStore } from "@store/storyStore/storyStore"
+import { ScreenName } from "../routes/screenNames"
+import { ScreenProps } from "../screens/screenProps"
+import { useHomeUIStore } from "../store/screensStore/homeUI"
+import { useStoryStore } from "../store/storyStore/storyStore"
+import { useAuthentication } from "../utils/hooks/useAuthentication"
 
 export const Home: FunctionComponent<ScreenProps> = (props) => {
 
     const { navigation } = props
     const { setCatName, catName } = useHomeUIStore()
     const { generateStory } = useStoryStore()
+    const { user } = useAuthentication();
 
     const updateAndGoToHistory = () : void => {
         navigation.navigate(ScreenName.STORIES)
         //generateStory(catName)
     }
     const goToFavorites = () : void => {
-        navigation.navigate(ScreenName.FAVORITES)
+        navigation.navigate(ScreenName.SIGN_UP)
     }
+
+    console.log('user')
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Cat edition</Text>
+            <Text style={styles.title}>Welcome {user?.email}</Text>
             <TextInput onChangeText={setCatName} value={catName} style={styles.input} onSubmitEditing={updateAndGoToHistory}/>
             <TouchableOpacity onPress={updateAndGoToHistory} style={styles.button}><Text>Generate</Text></TouchableOpacity>
             <TouchableOpacity onPress={goToFavorites} style={styles.button}><Text>Favorites</Text></TouchableOpacity>

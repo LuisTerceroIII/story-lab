@@ -1,4 +1,4 @@
-import openai  from "./clients/openAI.client";
+import openai  from "./openAiClient";
 
 
 export const OpenAIService = {

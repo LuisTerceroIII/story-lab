@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Home, NewStory, StoriesScreen, Favorites, StoryScreen } from '../screens/index';
+import { Home, NewStory, StoriesScreen, Favorites, StoryScreen, SignUpScreen, SignInScreen } from '../screens/index';
 import { ScreenName } from './screenNames';
 import { useStoryStore } from '../store/storyStore/storyStore';
 
@@ -10,6 +10,8 @@ export type RootStackParamList = {
     [ScreenName.STORIES]: undefined;
     [ScreenName.STORY]: undefined;
     [ScreenName.FAVORITES]: undefined;
+    [ScreenName.SIGN_UP]: undefined;
+    [ScreenName.SIGN_IN]: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -23,6 +25,8 @@ export const Routes = () => {
                 <Stack.Screen name={ScreenName.STORIES} component={StoriesScreen} options={{ title: `` }}/>
                 <Stack.Screen name={ScreenName.STORY} component={StoryScreen} options={{ title: `${useStoryStore.getState().actionStory?.title}` }}/>
                 <Stack.Screen name={ScreenName.FAVORITES} component={Favorites} options={{title: "Favorites"}}/>
+                <Stack.Screen name={ScreenName.SIGN_UP} component={SignUpScreen} options={{title: "Register"}}/>
+                <Stack.Screen name={ScreenName.SIGN_IN} component={SignInScreen} options={{title: "Login"}}/>
             </Stack.Group>
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
             </Stack.Group>

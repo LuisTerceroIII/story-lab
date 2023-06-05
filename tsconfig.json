@@ -1,21 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "ESNext",
-    "paths": {
-        "*": ["src/*"],
-        "@components/*": ["src/components/*"],
-        "@services/*": ["src/services/*"],
-        "@store/*": ["src/store/*"],
-        "@utils/*": ["src/utils/*"],
-        "@screens/*": ["src/screens/*"],
-        "@theme/*": ["src/theme/*"],
-        "@navigation/*": ["src/routes/*"],
-        "@models/*": ["src/types/*"]
-    },
+    "allowImportingTsExtensions": true,
   },
   "extends": "expo/tsconfig.base",
   "typeRoots": ["./src/types"],
-
-
 }
