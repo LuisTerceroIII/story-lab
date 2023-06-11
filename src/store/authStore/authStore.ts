@@ -3,6 +3,8 @@ import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInW
 import { auth } from "../../services/firebase/firebaseConfig";
 import { addNewUser } from "../../services/firebase/user";
 import { useGlobalUIStore } from "../screensStore/globalUIStore";
+import * as RootNavigation  from "../../routes/RootNavigation";
+import { ScreenName } from "../../routes/screenNames";
 
 interface AuthStoreProps {
     email: string
@@ -74,6 +76,7 @@ export const useAuthStore = create<AuthStoreProps & AuthStoreActions>((set, get)
             await createUserWithEmailAndPassword(auth, get().email, get().password)
             await addNewUser(auth.currentUser)
             await sendEmailVerification(auth.currentUser)
+            RootNavigation.navigate(ScreenName.HOME)
             set({loading: false})
           } catch (error) {
             console.log(error)

@@ -1,5 +1,6 @@
 import 'react-native-url-polyfill/auto';
 import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from './src/routes/RootNavigation';
 import { StatusBar } from 'expo-status-bar';
 import { Routes } from './src/routes/routes';
 import { useFonts } from 'expo-font';
@@ -32,7 +33,7 @@ export default function App() {
     }, [fontsLoaded])
     
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
             <StatusBar style="dark" />
             <Routes />
         </NavigationContainer>
