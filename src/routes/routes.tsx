@@ -12,7 +12,7 @@ export type RootStackParamList = {
     [ScreenName.FAVORITES]: undefined;
     [ScreenName.SIGN_UP]: undefined;
     [ScreenName.SIGN_IN]: undefined;
-};
+}
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 

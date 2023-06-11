@@ -5,6 +5,7 @@ import { ScreenProps } from "../screens/screenProps"
 import { useHomeUIStore } from "../store/screensStore/homeUI"
 import { useStoryStore } from "../store/storyStore/storyStore"
 import { useAuthentication } from "../utils/hooks/useAuthentication"
+import { User } from "firebase/auth"
 
 export const Home: FunctionComponent<ScreenProps> = (props) => {
 
@@ -21,7 +22,7 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
         navigation.navigate(ScreenName.SIGN_UP)
     }
 
-    console.log('user')
+    console.log('user', user?.displayName)
 
     return (
         <View style={styles.container}>
