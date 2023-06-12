@@ -30,9 +30,19 @@ export const useGlobalUIStore = create<GlobalUIStoreProps & GlobalUIStoreActions
     isViewingProfile: () => get().viewingSection === MainSections.PROFILE,
     openModal: () => set({modalIsOpen: true}),
     closeModal: () => set({modalIsOpen: false}),
-    goToHome: () => set({viewingSection: MainSections.HOME}),
-    goToGenAI: () => set({viewingSection: MainSections.GEN_AI}),
-    goToSearch: () => set({viewingSection: MainSections.SEARCH}),
-    goToFavorites: () => set({viewingSection: MainSections.FAVORITES}),
-    goToProfile: () => set({viewingSection: MainSections.PROFILE})
+    goToHome: () => {
+        set({viewingSection: MainSections.HOME})
+    },
+    goToGenAI: () => {
+        set({viewingSection: MainSections.GEN_AI})
+    },
+    goToSearch: () => {
+        set({viewingSection: MainSections.SEARCH})
+    },
+    goToFavorites: () => {
+        set({viewingSection: MainSections.FAVORITES})
+    },
+    goToProfile: () => {
+        set({viewingSection: MainSections.PROFILE})
+    }
 }))

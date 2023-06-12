@@ -4,7 +4,7 @@ import { ScreenProps } from '../screens/screenProps'
 import { useInteractionsStore } from '../store/userStore/interactionsStore'
 import { StoryMiniCard } from '../components/index'
 
-export const Favorites: FunctionComponent<ScreenProps> = (props) => {
+export const FavoritesScreen: FunctionComponent<ScreenProps> = (props) => {
 
     const { likedStories } = useInteractionsStore()
 
