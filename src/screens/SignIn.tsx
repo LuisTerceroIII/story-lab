@@ -78,7 +78,12 @@ export const SignInScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
     const signIn = async () => {
         await storeSignIn()
-        //navigation.navigate(ScreenName.HOME);
+    }
+    const goToRegister = () => {
+        navigation.navigate(ScreenName.SIGN_UP);
+    }
+    const goHome = () => {
+        navigation.navigate(ScreenName.HOME);
     }
 
     return (
@@ -114,10 +119,10 @@ export const SignInScreen: React.FC<ScreenProps> = ({ navigation }) => {
                     <Text style={BUTTON_TEXT}>Login</Text>
                 </TouchableOpacity>
             )}
-            <TouchableOpacity onPress={signIn}>
+            <TouchableOpacity onPress={goToRegister}>
                 <Text style={[LINK,{marginTop: 26, marginBottom: 18}]}>Register</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={signIn}>
+            <TouchableOpacity onPress={goHome}>
                 <Text style={LINK}>Login as guest</Text>
             </TouchableOpacity>
 

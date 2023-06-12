@@ -47,9 +47,12 @@ export const useAuthStore = create<AuthStoreProps & AuthStoreActions>((set, get)
           try {
             set({loading: true})
             await signInWithEmailAndPassword(auth, get().email, get().password)
+            RootNavigation.navigate(ScreenName.HOME)
             set({loading: false})
           } catch (error) {
+            console.log(JSON.stringify(error))
             set({loading: false})
+            get().openLoginErrorModal()
             set({
                 email: get().email,
                 password: get().password,

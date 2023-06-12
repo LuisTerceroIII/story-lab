@@ -78,7 +78,6 @@ export const SignUpScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
     const signUp = async () => {
         await storeSignUp()
-        //navigation.navigate(ScreenName.HOME);
     }
     const goToLogin = () => {
         navigation.navigate(ScreenName.SIGN_IN);
