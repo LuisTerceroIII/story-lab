@@ -70,7 +70,7 @@ export const SignInScreen: React.FC<ScreenProps> = ({ navigation }) => {
         error: state.error,
         detailError: state.detailError,
         loading: state.loading,
-    }));
+    }))
 
     const storeSignIn = useSignIn()
     const setEmail = useSetEmail()
@@ -125,8 +125,6 @@ export const SignInScreen: React.FC<ScreenProps> = ({ navigation }) => {
             <TouchableOpacity onPress={goHome}>
                 <Text style={LINK}>Login as guest</Text>
             </TouchableOpacity>
-
-            
         </View>
         </SafeAreaView>
     );

@@ -6,6 +6,7 @@ import { useHomeUIStore } from "../store/screensStore/homeUI"
 import { useStoryStore } from "../store/storyStore/storyStore"
 import { useAuthentication } from "../utils/hooks/useAuthentication"
 import { User } from "firebase/auth"
+import MainFooter from "../components/shared/MainFooter/MainFooter"
 
 export const Home: FunctionComponent<ScreenProps> = (props) => {
 
@@ -31,6 +32,7 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
             <TextInput onChangeText={setCatName} value={catName} style={styles.input} onSubmitEditing={updateAndGoToHistory}/>
             <TouchableOpacity onPress={updateAndGoToHistory} style={styles.button}><Text>Generate</Text></TouchableOpacity>
             <TouchableOpacity onPress={goToFavorites} style={styles.button}><Text>Favorites</Text></TouchableOpacity>
+            <MainFooter />
         </View>
     )
 }

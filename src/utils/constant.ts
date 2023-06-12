@@ -19,4 +19,11 @@ export enum StoriesCategories {
 export enum Actors {
     USER = "user",
     STORY = "story"
-}  
+}
+export enum MainSections {
+    HOME = "home",
+    GEN_AI = "gen_ai",
+    SEARCH = "search",
+    FAVORITES = "favorites",
+    PROFILE = "profile"
+}

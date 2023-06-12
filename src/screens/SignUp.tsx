@@ -125,8 +125,6 @@ export const SignUpScreen: React.FC<ScreenProps> = ({ navigation }) => {
             <TouchableOpacity onPress={goHome}>
                 <Text style={LINK}>Login as guest</Text>
             </TouchableOpacity>
-
-            
         </View>
         </SafeAreaView>
     );
