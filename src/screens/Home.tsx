@@ -15,6 +15,7 @@ import { GenAISection } from "./sections/GenAISection"
 import { SearchSection } from "./sections/SearchSection"
 import { FavoritesSection } from "./sections/FavoritesSection"
 import { ProfileSection } from "./sections/ProfileSection"
+import { Screen } from "react-native-screens"
 
 const MAIN_CONTAINER: ViewStyle = {
     flex: 1,
@@ -37,13 +38,13 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
     }))
 
     return (
-        <SafeAreaView style={MAIN_CONTAINER}>
+        <Screen style={MAIN_CONTAINER}>
             {isViewingHome() && <HomeSection />}
             {isViewingGenAI() && <GenAISection/>}
             {isViewingSearch() && <SearchSection />}
             {isViewingFavorites() && <FavoritesSection />}
             {isViewingProfile() && <ProfileSection/>}
             <MainFooter />
-        </SafeAreaView>
+        </Screen>
     )
 }

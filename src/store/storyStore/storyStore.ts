@@ -10,18 +10,28 @@ interface StoryStoreProps {
     stories: Story[]
     actionStory: Story | null
     loadingStory: boolean
+    selectedCategory: StoriesCategories
     getCategoryLabel: (category: StoriesCategories) => string
     getShuffleStories: () => Story[]
+    getFilteredStories: () => Story[]
 }
 interface StoryStoreAction {
     generateStory: (input: string) => Promise<void>
     setActionStory: (id: string) => void
+    setSelectedCategory: (category: StoriesCategories) => void
 }
 
 export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, get) => ({
     stories: [...stories],
     actionStory: stories[0],
     loadingStory: false,
+    selectedCategory: StoriesCategories.ANIMALS,
+    setSelectedCategory: (category: StoriesCategories) => {
+        set({selectedCategory: category})
+    },
+    getFilteredStories: () => {
+        return get().selectedCategory === StoriesCategories.ALL ? get().stories : get().stories.filter(story => story.category === get().selectedCategory)
+    },
     generateStory : async (input: string) => {
         set({loadingStory: true})
         const res = await OpenAIService.getHistory(input)

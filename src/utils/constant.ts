@@ -1,4 +1,5 @@
 export enum StoriesCategories {
+    ALL = "all",
     ADVENTURE = "adventure",
     LOVE = "love",
     FAIRY_TALE = "fairy tale",

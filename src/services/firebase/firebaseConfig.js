@@ -4,16 +4,6 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { FIREBASE_API_KEY, FIREBASE_APP_ID,FIREBASE_AUTH_DOMAIN,FIREBASE_MEASUREMENT_ID,FIREBASE_MESSAGING_SENDER_ID,FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET } from "@env";
 
-// Optionally import the services that you want to use
-// import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
-// import {...} from "firebase/functions";
-// import {...} from "firebase/storage";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,
