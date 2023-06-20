@@ -1,13 +1,20 @@
+import { StoriesCategories } from "../../types/models";
 import openai  from "./openAiClient";
 
 
 export const OpenAIService = {
 
-    getHistory: async (input: string) => {
+    getHistory: async (title: string, category: StoriesCategories, plot: string, paragraphs=4) => {
         try {
+            let requireArgPrompt = `Write a story titled ${title} of category:${category}.`
+            const hasPlot = plot !== null && plot !== undefined && plot !== ""
+            if (hasPlot) {
+                requireArgPrompt = requireArgPrompt + `The main idea of the story is:${plot}.`
+            }
+            requireArgPrompt = requireArgPrompt + `The length of the story should be ${paragraphs} paragraphs`
             const res = await openai.createCompletion({
                 model: "text-davinci-002",
-                prompt: `Write a story about a cat name ${input}. The story must have a beginning, middle and end.`,
+                prompt:requireArgPrompt,
                 max_tokens: 150,
                 temperature: 0.2,
               })

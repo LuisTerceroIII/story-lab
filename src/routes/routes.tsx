@@ -20,8 +20,8 @@ export const Routes = () => {
     return (
         <Stack.Navigator initialRouteName={ScreenName.HOME}>
             <Stack.Group>
-                <Stack.Screen name={ScreenName.HOME} component={Home} options={{ title: 'Magic Tell' }}/>
-                <Stack.Screen name={ScreenName.NEW_STORY} component={NewStory} />
+                <Stack.Screen name={ScreenName.HOME} component={Home} options={{ title: 'Magic Tell', headerShown: false }}/>
+                <Stack.Screen name={ScreenName.NEW_STORY} component={NewStory} options={{headerShown: false }}/>
                 <Stack.Screen name={ScreenName.STORIES} component={StoriesScreen} options={{ title: `` }}/>
                 <Stack.Screen name={ScreenName.STORY} component={StoryScreen} options={{ title: `${useStoryStore.getState().actionStory?.title}` }}/>
                 <Stack.Screen name={ScreenName.FAVORITES} component={FavoritesScreen} options={{title: "Favorites"}}/>

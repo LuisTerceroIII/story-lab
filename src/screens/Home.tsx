@@ -1,5 +1,5 @@
-import { Text, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle } from "react-native"
-import { FunctionComponent } from "react"
+import { Text, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle, ScrollView } from "react-native"
+import { FunctionComponent, useEffect } from "react"
 import { ScreenName } from "../routes/screenNames"
 import { ScreenProps } from "../screens/screenProps"
 import { useHomeUIStore } from "../store/screensStore/homeUI"
@@ -27,7 +27,7 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
     const { navigation } = props
     const { setCatName, catName } = useHomeUIStore()
     const { generateStory } = useStoryStore()
-    const { user } = useAuthentication();
+    
 
     const { isViewingFavorites, isViewingGenAI, isViewingHome, isViewingProfile, isViewingSearch } = useGlobalUIStore( (state) => ({
         isViewingFavorites: state.isViewingFavorites,
@@ -38,13 +38,13 @@ export const Home: FunctionComponent<ScreenProps> = (props) => {
     }))
 
     return (
-        <Screen style={MAIN_CONTAINER}>
+        <SafeAreaView style={MAIN_CONTAINER}>
             {isViewingHome() && <HomeSection />}
             {isViewingGenAI() && <GenAISection/>}
             {isViewingSearch() && <SearchSection />}
             {isViewingFavorites() && <FavoritesSection />}
             {isViewingProfile() && <ProfileSection/>}
             <MainFooter />
-        </Screen>
+        </SafeAreaView>
     )
 }

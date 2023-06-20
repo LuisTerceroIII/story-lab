@@ -6,10 +6,12 @@ import { Routes } from './src/routes/routes';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect } from 'react';
+import { useAuthentication } from './src/utils/hooks/useAuthentication';
 
 export default function App() {
 
     SplashScreen.preventAutoHideAsync();
+    const { user } = useAuthentication();
 
     const [fontsLoaded, error] = useFonts({
         'FireSans-Black': require('./assets/fonts/FiraSans-Black.ttf'),
@@ -19,6 +21,11 @@ export default function App() {
         'FiraSans-Regular': require('./assets/fonts/FiraSans-Regular.ttf'),
         'FiraSans-SemiBold': require('./assets/fonts/FiraSans-SemiBold.ttf'),
     });
+    useEffect(() => {
+
+        //user?.isAnonymous && console.log('user is anonymous')
+
+    }, [])
     useEffect(() => {
         const checkLoadedFont = async () => {
             if (fontsLoaded) {
