@@ -13,6 +13,7 @@ const MAIN_CONTAINER: ViewStyle = {
     backgroundColor: colorPalette.ultraWhite,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50
 }
 const INPUTS: ViewStyle = {
     flex: 1
