@@ -11,7 +11,7 @@ export const OpenAIService = {
             if (hasPlot) {
                 requireArgPrompt = requireArgPrompt + `The main idea of the story is:${plot}.`
             }
-            requireArgPrompt = requireArgPrompt + `The length of the story should be ${paragraphs} paragraphs`
+            requireArgPrompt = requireArgPrompt + `The length of the story should be ${paragraphs} paragraphs. Just return the story.`
             const res = await openai.createCompletion({
                 model: "text-davinci-002",
                 prompt:requireArgPrompt,

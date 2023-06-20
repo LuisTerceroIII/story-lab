@@ -15,6 +15,7 @@ interface GenAIProps {
     isCategoryDropdownOpen: boolean
     generatedStory: Story
     loadingStory: boolean
+    error: boolean
 }
 interface GenAIActions {
     setTitle: (title: string) => void
@@ -30,6 +31,7 @@ export const useGenAIStore = create<GenAIProps & GenAIActions>((set, get) => ({
     plotIdea: null,
     generatedStory: null,
     loadingStory: false,
+    error: false,
     setSelectedCategory: (selectedCategory: any) => {
         set({ selectedCategory })
     },
@@ -69,10 +71,9 @@ export const useGenAIStore = create<GenAIProps & GenAIActions>((set, get) => ({
             }
             set({ generatedStory: story })
             RootNavigation.navigate(ScreenName.NEW_STORY)
-            console.log({content: story.content})
-            set({ loadingStory: false })
+            set({ loadingStory: false,  error: false, title: null, plotIdea: null, selectedCategory: null })
         } catch(err) {
-            set({ loadingStory: false })
+            set({ loadingStory: false, error: true })
             console.log("error generating story", err)
         }
     },
