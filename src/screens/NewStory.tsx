@@ -6,10 +6,11 @@ import { useGenAIStore } from '../store/screensStore/gen-ai'
 import { Button } from '../components/basics'
 import { Image, ImageStyle } from 'expo-image'
 import { colorPalette } from '../theme/colors'
+import { useInteractionsStore } from '../store/userStore/interactionsStore'
 
 const MAIN_CONTAINER: ViewStyle = {
     marginHorizontal: 20,
-    marginTop: 70
+    marginTop: 100
 }
 const TITLE_CONTAINER: ViewStyle = {
     flexDirection: 'row',
@@ -55,7 +56,8 @@ const STORY: TextStyle = {
 export const NewStory: FunctionComponent<ScreenProps> = (props) => {
     const { navigation } = props
     const { generatedStory } = useGenAIStore(state => ({ generatedStory: state.generatedStory }))
-    console.log(generatedStory?.content)
+    const { addStoryToMyGenAI } = useInteractionsStore()
+
     return (
         <SafeAreaView style={MAIN_CONTAINER}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -70,7 +72,11 @@ export const NewStory: FunctionComponent<ScreenProps> = (props) => {
                     <Text style={CATEGORY}>{generatedStory?.category}</Text>
                 </View>
                 <Text style={STORY}>{generatedStory?.content?.trim().replace(/^\s+/, '')}</Text>
-                <Button label="Go home" onPress={() => navigation.navigate(ScreenName.HOME)} />   
+
+                <View style={{alignSelf: "center", flexDirection: "row", justifyContent: "space-around", width: 320, marginTop: 20, paddingBottom: 30}}>
+                    <Button label="Go home" onPress={() => navigation.navigate(ScreenName.HOME)} />   
+                    <Button label="Save" onPress={() => addStoryToMyGenAI(generatedStory)} /> 
+                </View>  
             </ScrollView>
         </SafeAreaView>
     )

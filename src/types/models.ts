@@ -1,3 +1,6 @@
+export enum ADMIN_ID {
+    ADMIN = "MagicTellAdmin"
+}
 export interface Image {
   id: string;
   actorType: Actors;
@@ -23,6 +26,10 @@ export interface Favorite {
   id: string;
   userId: string;
   storyId: string;
+}
+export enum MyStoriesCategory {
+    GEN_AI = "gen_ai",
+    FAVORITES = "favorites"
 }
 export enum StoriesCategories {
   ALL = "all",

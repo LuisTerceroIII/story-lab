@@ -1,52 +1,37 @@
 import { create } from "zustand";
-import { nanoid } from 'nanoid'
-import { OpenAIService } from "../../services/openAI/openAiService";
 import { stories } from "../../utils/stories";
-import { StoriesCategories, Story } from "../../types/models";
-import { useNavigation } from "@react-navigation/native";
-import { ScreenName } from "../../routes/screenNames"
+import { MyStoriesCategory, StoriesCategories, Story } from "../../types/models";
 
 interface StoryStoreProps {
     stories: Story[]
     actionStory: Story | null
     loadingStory: boolean
     selectedCategory: StoriesCategories
+    myStoriesCategorySelected: MyStoriesCategory, 
+    setMyStoriesFilter: (category: MyStoriesCategory) => void
     getCategoryLabel: (category: StoriesCategories) => string
     getShuffleStories: () => Story[]
-    getFilteredStories: () => Story[]
+    getFilteredStories: () => Story[],
+    filterByGenAIStories: () => boolean
 }
 interface StoryStoreAction {
-    generateStory: (input: string) => Promise<void>
     setActionStory: (id: string) => void
     setSelectedCategory: (category: StoriesCategories) => void
+    addStory: (story: Story) => void
+    removeStory: (id: string) => void
 }
 
 export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, get) => ({
     stories: [...stories],
     actionStory: stories[0],
     loadingStory: false,
-    selectedCategory: StoriesCategories.ANIMALS,
+    selectedCategory: StoriesCategories.ALL,
+    myStoriesCategorySelected: MyStoriesCategory.GEN_AI,
     setSelectedCategory: (category: StoriesCategories) => {
         set({selectedCategory: category})
     },
     getFilteredStories: () => {
         return get().selectedCategory === StoriesCategories.ALL ? get().stories : get().stories.filter(story => story.category === get().selectedCategory)
-    },
-    generateStory : async (input: string) => {
-        set({loadingStory: true})
-        const res = await OpenAIService.getHistory(input)
-        const id = () => nanoid()
-        const story: Story = {
-            //@ts-ignore
-            id,
-            title: input,
-            category: StoriesCategories.ANIMALS,
-            content: res, 
-            ownerId: "0"
-        }
-        set({stories: [...get().stories, story]})
-        set({actionStory: story})
-        set({loadingStory: false})
     },
     setActionStory: (id: string) => {
         const story = get().stories.find(story => story.id === id)
@@ -98,6 +83,17 @@ export const useStoryStore = create<StoryStoreProps & StoryStoreAction>((set, ge
             default:
                 return "Unknown"
         }
+    },
+    setMyStoriesFilter: (category: MyStoriesCategory) => {
+        set({myStoriesCategorySelected: category})
+    },
+    filterByGenAIStories: () => get()?.myStoriesCategorySelected === MyStoriesCategory.GEN_AI,
+    addStory: (story: Story) => {
+        set({stories: [...get().stories, story]})
+    },
+    removeStory: (id: string) => {
+        set({stories: get().stories.filter(story => story.id !== id)})
     }
+
 
 }))

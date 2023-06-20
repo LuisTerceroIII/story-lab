@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { StoriesCategories, Story } from "../../types/models";
+import { ADMIN_ID, StoriesCategories, Story } from "../../types/models";
 import { OpenAIService } from "../../services/openAI/openAiService";
 import { nanoid } from "nanoid";
 import { useUserStore } from "../userStore/userStore";
@@ -67,7 +67,7 @@ export const useGenAIStore = create<GenAIProps & GenAIActions>((set, get) => ({
                 title: get().title,
                 category: get().selectedCategory as StoriesCategories,
                 content: res, 
-                ownerId: useUserStore.getState().user?.uid || "MagicTellAdmin"
+                ownerId: useUserStore.getState().user?.uid || ADMIN_ID.ADMIN
             }
             set({ generatedStory: story })
             RootNavigation.navigate(ScreenName.NEW_STORY)
